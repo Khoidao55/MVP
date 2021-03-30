@@ -34,7 +34,6 @@ const UploadImage = ({ user }) => {
   };
 
     if(uploadedImage.length !== 0) {
-      console.log(uploadedImage);
       return (
         <div>
           <div style={{textAlign: 'center', marginBottom: '20px'}}>

@@ -8,9 +8,10 @@ const GlobalImagePage = ({ imageGallery }) => {
     <div className='image-gallery-container'>
       {imageGallery.map(image =>
       (<motion.div
-      layout
-      >
-        <IndividualImage image={image} />
+        key={imageGallery.indexOf(image)}
+        layout
+        >
+        <IndividualImage image={image}/>
       </motion.div>)
       )}
     </div>

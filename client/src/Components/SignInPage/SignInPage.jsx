@@ -1,75 +1,72 @@
-import React from "react";
-import FormInput from "../FormInput/FormInput";
-import CustomButton from "../CustomButton/CustomButton";
-import "./SignIn.css";
+import React, { useState, useEffect } from "react";
+import FormInput from "../FormInput/FormInput.jsx";
+//mport CustomButton from "../CustomButton/CustomButton";
+import "./SignInPage.css";
 
 import { signInWithGoogle } from "../../FireBase/FireBase.utils";
 
-class SignInPage extends React.Component {
-  constructor() {
-    super();
+const SignInPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
-
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ email: "", password: "" });
+    setUserName('');
+    setPassword('');
   };
 
-  handleChange = (event) => {
+  const handleChange  = (event) => {
     const { value, name } = event.target;
-
-    this.setState({ [name]: value });
+    if(name === 'email') {
+      setEmail(() => value);
+    } else {
+      setPassword(() => value);
+    }
   };
 
-  render() {
-    return (
-      <div className="sign-in">
-        <text className="label">I already have an account</text>
-        <span style={{ color: "black", paddingLeft: "5px" }}>
-          Sign in with your email and password
-        </span>
+  return (
+    <div className="sign-in">
+      <span style={{ color: "black", paddingLeft: "5px" }}>
+        Sign in with your email and password
+      </span>
 
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            name="email"
-            type="email"
-            label="email"
-            handleChange={this.handleChange}
-            value={this.state.email}
-            required
-          />
-          <FormInput
-            name="password"
-            type="password"
-            label="password"
-            value={this.state.password}
-            handleChange={this.handleChange}
-            required
-          />
-          <div style={{ paddingLeft: "25px" }}>
-            <CustomButton
-              className="signin-button custom-button-full"
-              type="submit"
-            >
-              Sign In
-            </CustomButton>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="email"
+          type="email"
+          label="email"
+          handleChange={handleChange}
+          value={email}
+          required
+        />
+        <FormInput
+          name="password"
+          type="password"
+          label="password"
+          value={password}
+          handleChange={handleChange}
+          required
+        />
+        <div style={{ paddingLeft: "25px" }}>
+          {/* <CustomButton
+            className="signin-button custom-button-full"
+            type="submit"
+          >
+            Sign In
+          </CustomButton> */}
 
-            <CustomButton
-              className="signin-button custom-button-full"
-              onClick={signInWithGoogle}
-            >
-              Sign in with Google
-            </CustomButton>
-          </div>
-        </form>
-      </div>
-    );
-  }
+          {/* <CustomButton
+            className="signin-button custom-button-full"
+            onClick={signInWithGoogle}
+          >
+            Sign in with Google
+          </CustomButton> */}
+          <button>Sign in</button>
+          <button onClick={signInWithGoogle} >Sign in with Google</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default SignInPage;
