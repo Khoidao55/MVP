@@ -1,26 +1,22 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
+import 'firebase/firestore';
+// Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA3NapFGqefRBYKHFvXRQo0Vw25Ewpd4m0",
+    authDomain: "mvp-project-c46f6.firebaseapp.com",
+    projectId: "mvp-project-c46f6",
+    storageBucket: "mvp-project-c46f6.appspot.com",
+    messagingSenderId: "234492727560",
+    appId: "1:234492727560:web:a5551eb2caf502533a5cbd",
+    measurementId: "G-045B045WPE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 
-const config = {
-  apiKey: "AIzaSyDxKcz5BdgosyayPf7zK46XLV_dMeW0l_c",
-  authDomain: "fir-spotify-a10bb.firebaseapp.com",
-  databaseURL: "https://fir-spotify-a10bb.firebaseio.com",
-  projectId: "fir-spotify-a10bb",
-  storageBucket: "fir-spotify-a10bb.appspot.com",
-  messagingSenderId: "620960354034",
-  appId: "1:620960354034:web:ca6fe036e1369d41a1ca6b",
-  measurementId: "G-JZ6EZF9H9E",
-};
+  const photoStorage = firebase.storage();
+  const photoFirestore = firebase.firestore();
 
-firebase.initializeApp(config);
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
-export default firebase;
+  export { photoStorage, photoFirestore };

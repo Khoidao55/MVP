@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import IndividualImage from '../IndividualImage/IndividualImage.jsx';
+import { motion } from 'framer-motion';
 import './GlobalImagePage.css';
 
 const GlobalImagePage = ({ imageGallery }) => {
   return(
     <div className='image-gallery-container'>
       {imageGallery.map(image =>
-      <div>
+      (<motion.div
+      layout
+      >
         <IndividualImage image={image} />
-      </div>
+      </motion.div>)
       )}
     </div>
   )

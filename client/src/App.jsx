@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import UploadImage from './Components/UploadImage/UploadImage.jsx';
 import './App.css';
 
 const App = () => {
+  const [user, setUser] = useState('anonymous');
   return(
     <div>
-      <UploadImage />
+      <UploadImage user={user}/>
     </div>
   )
 }
