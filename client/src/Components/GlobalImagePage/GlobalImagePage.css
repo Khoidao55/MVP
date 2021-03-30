@@ -1,11 +1,6 @@
 .image-gallery-container {
-  display: flex;
-  background-color: grey;
-  width: 1000px;
-  height: 1000px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
 }
 
-.individual-image {
-  width: 30%;
-  height: 30%;
-}

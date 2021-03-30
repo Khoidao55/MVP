@@ -18,7 +18,7 @@ const UploadImage = () => {
 
   return (
     <div>
-      <div>
+      <div style={{textAlign: 'center', marginBottom: '20px'}}>
         <input type='file' accept="image/*" onChange={imageSelected}/>
       </div>
       {uploadedImage.length === 0

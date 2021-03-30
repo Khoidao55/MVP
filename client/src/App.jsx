@@ -1,10 +1,10 @@
 import React from "react";
 import UploadImage from './Components/UploadImage/UploadImage.jsx';
+import './App.css';
 
 const App = () => {
   return(
     <div>
-      <h1>Hello World</h1>
       <UploadImage />
     </div>
   )
