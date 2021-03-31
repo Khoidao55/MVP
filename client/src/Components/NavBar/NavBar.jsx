@@ -13,19 +13,21 @@ const NavBar = ({ currentUser }) => {
     <nav>
       <li>
         <Link to="/">
-          <h2>Home</h2>
+          Home
         </Link>
       </li>
       <li>
-        {currentUser !== 'anonymous' ? (
+        {currentUser !== 'anonymous'
+        ? (
           <a href="#signout" onClick={() => auth.signOut()}>
             <cite className="user-profile">
               <h2>Logged In</h2>
             </cite>
           </a>
-        ) : (
+        )
+        : (
           <Link to="/signin">
-            <a href="#signin">Sign In</a>
+            Sign In
           </Link>
         )}
       </li>

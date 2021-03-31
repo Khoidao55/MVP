@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import FormInput from "../FormInput/FormInput.jsx";
-//mport CustomButton from "../CustomButton/CustomButton";
-import "./SignInPage.css";
 
-import { signInWithGoogle } from "../../FireBase/FireBase.utils";
-
-const SignInPage = () => {
+const SignUpPage = () => {
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setUserName('');
     setUserName('');
     setPassword('');
   };
@@ -25,7 +17,10 @@ const SignInPage = () => {
     const { value, name } = event.target;
     if(name === 'email') {
       setEmail(() => value);
-    } else {
+    } else if(name === 'username'){
+      setUserName(() => value);
+    }
+      else {
       setPassword(() => value);
     }
   };
@@ -34,10 +29,18 @@ const SignInPage = () => {
     <>
     <div className="sign-in">
       <span className="sign-in-text">
-        Sign in with your email and password
+        Sign up with your email
       </span>
 
       <form onSubmit={handleSubmit}>
+      <FormInput
+          name="username"
+          type="text"
+          label="username"
+          handleChange={handleChange}
+          value={userName}
+          required
+        />
         <FormInput
           name="email"
           type="email"
@@ -68,23 +71,13 @@ const SignInPage = () => {
           >
             Sign in with Google
           </CustomButton> */}
-          <button>Sign in</button>
+          <button>Sign Up</button>
           {/* <button onClick={signInWithGoogle} >Sign in with Google</button> */}
         </div>
       </form>
-      </div>
-      <div className="sign-up">
-        <Router>
-          <span className="sign-up-text">
-            Don't have an account?
-            <Link to='/signup'>
-              <span style={{paddingLeft: '5px', color: 'blue', fontWeight: 'bold', cursor: 'pointer'}}>Sign Up</span>
-            </Link>
-          </span>
-        </Router>
       </div>
       </>
   );
 }
 
-export default SignInPage;
+export default SignUpPage;

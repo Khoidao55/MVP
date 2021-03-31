@@ -5,6 +5,7 @@ import './UploadImage.css';
 
 const UploadImage = ({ user }) => {
   const [uploadedImage, setUploadedImage] = useState([]);
+
   useEffect(() => {
     axios.get('/globalgallery')
     .then(result => {

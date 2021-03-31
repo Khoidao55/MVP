@@ -8,6 +8,7 @@ import {
 import NavBar from './Components/NavBar/NavBar.jsx';
 import UploadImage from './Components/UploadImage/UploadImage.jsx';
 import SignInPage from "./Components/SignInPage/SignInPage.jsx";
+import SignUpPage from "./Components/SignUpPage/SignUpPage.jsx";
 import './App.css';
 
 const App = () => {
@@ -17,10 +18,11 @@ const App = () => {
       <NavBar currentUser={user} />
       <Router>
         <Switch>
-          <Route path="/" component={UploadImage}></Route>
+          <Route path="/">
+            <UploadImage user={user}/>
+          </Route>
           <Route path="/signin" component={SignInPage}></Route>
-            {/* <Route exact path="/signin" component={SignInPage} />
-            <Route exact path="/" component={UploadImage} /> */}
+          <Route path="/signup" component={SignUpPage}></Route>
         </Switch>
       </Router>
     </div>
