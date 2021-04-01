@@ -18,10 +18,10 @@ const App = () => {
       <NavBar currentUser={user} />
       <Router>
         <Switch>
-          <Route path="/">
+          <Route path="/home">
             <UploadImage user={user}/>
           </Route>
-          <Route path="/signin" component={SignInPage}></Route>
+          <Route path="/" component={SignInPage}></Route>
           <Route path="/signup" component={SignUpPage}></Route>
         </Switch>
       </Router>

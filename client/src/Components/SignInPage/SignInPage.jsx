@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import {
   HashRouter as Router,
   Switch,
@@ -15,9 +16,14 @@ const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const validateUser = () => {
+    axios.get(`/validateUser?email=${email}&password=${password}`)
+    .then(result => console.log(result))
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUserName('');
+    setEmail('');
     setPassword('');
   };
 
@@ -68,7 +74,7 @@ const SignInPage = () => {
           >
             Sign in with Google
           </CustomButton> */}
-          <button>Sign in</button>
+          <button onClick={validateUser}>Sign in</button>
           {/* <button onClick={signInWithGoogle} >Sign in with Google</button> */}
         </div>
       </form>

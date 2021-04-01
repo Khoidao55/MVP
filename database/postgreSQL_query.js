@@ -20,7 +20,31 @@ const getImage = (request, response) => {
     response.status(200).json(arrayOfPhotos);
   });
 }
+const createNewUser = (request, response) => {
+  const username = request.query.username;
+  const email = request.query.email;
+  const password = request.query.password;
+  pool.databaseConfig.query('INSERT INTO ')
+}
+
+const validateUser = (request, response) => {
+  const email = request.query.email;
+  const password = request.query.password;
+  pool.databaseConfig.query('SELECT * from existing_users', (err, results) => {
+    if(err) throw err;
+    const existingUsers = results.rows;
+    for(let i = 0; i <= existingUsers; i++) {
+      if(email === existingUsers[i].email && password === existingUsers[i].password) {
+        response.status(200).json(existingUsers[i].username);
+      } else {
+        response.status(200).json('anonymous');
+      }
+    }
+  });
+}
 
 module.exports.postImage = postImage;
 module.exports.getImage = getImage;
+module.exports.validateUser = validateUser;
+module.exports.createNewUser = createNewUser;
 

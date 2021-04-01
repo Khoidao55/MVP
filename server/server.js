@@ -14,6 +14,7 @@ app.use(express.static('public'));
 
 app.post('/globalgallery', db.postImage);
 app.get('/globalgallery', db.getImage);
+app.get('/validateUser', db.validateUser);
 
 app.listen(3000, () => {
   console.log('Listening on 3000');
