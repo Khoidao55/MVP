@@ -21,19 +21,29 @@ const getImage = (request, response) => {
   });
 }
 const createNewUser = (request, response) => {
-  const username = request.query.username;
-  const email = request.query.email;
-  const password = request.query.password;
-  pool.databaseConfig.query('INSERT INTO ')
+  const username = request.body.username;
+  const email = request.body.email;
+  const password = request.body.password;
+  console.log(username);
+  console.log(email);
+  console.log(password);
+  pool.databaseConfig.query('INSERT INTO existing_users(username, email, password) VALUES ($1, $2, $3)', [username, email, password], (err, results) => {
+    if(err) throw err;
+
+    response.status(200).json('created new user!');
+  })
 }
 
 const validateUser = (request, response) => {
   const email = request.query.email;
   const password = request.query.password;
+  console.log(email);
+  console.log(password);
   pool.databaseConfig.query('SELECT * from existing_users', (err, results) => {
     if(err) throw err;
     const existingUsers = results.rows;
-    for(let i = 0; i <= existingUsers; i++) {
+    console.log(existingUsers);
+    for(let i = 0; i < existingUsers.length; i++) {
       if(email === existingUsers[i].email && password === existingUsers[i].password) {
         response.status(200).json(existingUsers[i].username);
       } else {

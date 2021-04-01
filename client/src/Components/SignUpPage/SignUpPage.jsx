@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import FormInput from "../FormInput/FormInput.jsx";
 
 const SignUpPage = () => {
@@ -12,6 +13,19 @@ const SignUpPage = () => {
     setUserName('');
     setPassword('');
   };
+
+  const createUser = (event) => {
+    if(userName !== '' && email !== '' && password !== '') {
+      const userIdentity = {
+        username: userName,
+        email: email,
+        password: password
+      }
+      axios.post('/createUser', userIdentity)
+      .then(result => console.log('created new user'))
+      .catch(err => console.log('problem with creating new user'));
+    }
+  }
 
   const handleChange  = (event) => {
     const { value, name } = event.target;
@@ -71,7 +85,7 @@ const SignUpPage = () => {
           >
             Sign in with Google
           </CustomButton> */}
-          <button>Sign Up</button>
+          <button onClick={createUser}>Sign Up</button>
           {/* <button onClick={signInWithGoogle} >Sign in with Google</button> */}
         </div>
       </form>

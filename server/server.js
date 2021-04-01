@@ -13,6 +13,7 @@ app.use(compression());
 app.use(express.static('public'));
 
 app.post('/globalgallery', db.postImage);
+app.post('/createUser', db.createNewUser);
 app.get('/globalgallery', db.getImage);
 app.get('/validateUser', db.validateUser);
 

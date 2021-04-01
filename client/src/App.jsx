@@ -21,8 +21,8 @@ const App = () => {
           <Route path="/home">
             <UploadImage user={user}/>
           </Route>
-          <Route path="/" component={SignInPage}></Route>
-          <Route path="/signup" component={SignUpPage}></Route>
+          <Route path="/signin" component={SignInPage}></Route>
+          <Route path="/" component={SignUpPage}></Route>
         </Switch>
       </Router>
     </div>
