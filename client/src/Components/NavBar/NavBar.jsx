@@ -9,29 +9,36 @@ import { auth } from "../../FireBase/FireBase.utils";
 import './NavBar.css';
 
 const NavBar = ({ currentUser }) => {
+
+  const onClickHome = () => {
+    <Redirect to='/' />
+  }
+
+  const onClickSignIn = () => {
+    <Redirect to='/signin' />
+  }
+
   return (
     <Router>
       <nav>
         <div className="row">
           <ul className="main-nav">
             <li>
-              <Link to="/">
-              <a href="/">Home</a>
-              </Link>
+              {/* <Link to="/"> */}
+              <a href="/" onClick={onClickHome}>Home</a>
+              {/* </Link> */}
             </li>
             <li>
               {currentUser !== 'anonymous'
               ? (
-                <a href="#signout" onClick={() => auth.signOut()}>
-                  <cite className="user-profile">
-                    <h2>Logged In</h2>
-                  </cite>
-                </a>
+                <Link to={`/${currentUser}`}>
+                  <a>{currentUser}</a>
+                </Link>
               )
               : (
-                <Link to="/signin">
-                  <a href="/signin">Sign In</a>
-                </Link>
+                // <Link to="/signin">
+                  <a href="/signin" onClick={onClickSignIn}>Sign In</a>
+                // </Link>
               )}
             </li>
           </ul>

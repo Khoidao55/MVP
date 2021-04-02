@@ -4,18 +4,23 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import FormInput from "../FormInput/FormInput.jsx";
-//mport CustomButton from "../CustomButton/CustomButton";
 import "./SignInPage.css";
 
 import { signInWithGoogle } from "../../FireBase/FireBase.utils";
 
 const SignInPage = ({ setUser }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const toggle = false;
+  const [isLoggedIn, setIsLoggedIn] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const onClickRegister = () => {
+    <Redirect to='/signup' />
+  }
 
   const validateUser = () => {
     axios.get(`/validateUser?email=${email}&password=${password}`)
@@ -23,7 +28,7 @@ const SignInPage = ({ setUser }) => {
       if(result.data === 'anonymous') {
         setIsLoggedIn(false);
       } else {
-        setUser(result.data.username);
+        setUser(result.data);
         setIsLoggedIn(true);
       }
     })
@@ -45,6 +50,10 @@ const SignInPage = ({ setUser }) => {
   };
 
   return (
+    <>
+    {isLoggedIn
+    ? <Redirect to='/' />
+    :
     <>
     <div className="sign-in">
       <span className="sign-in-text">
@@ -73,6 +82,7 @@ const SignInPage = ({ setUser }) => {
         />
         <div style={{ textAlign: 'center' }}>
           <button onClick={validateUser}>Login in</button>
+          <p className={`invalid-login-${isLoggedIn === '' ? 'false' : 'true'}`}>The username or password you entered doesn't belong to an account. Please check your username or password and try again.</p>
         </div>
       </form>
       </div>
@@ -80,12 +90,14 @@ const SignInPage = ({ setUser }) => {
         <Router>
           <span className="sign-up-text">
             Don't have an account?
-            <Link to='/signup'>
-              <span style={{paddingLeft: '5px', color: 'blue', fontWeight: 'bold', cursor: 'pointer'}}>Sign Up</span>
-            </Link>
+            {/* <Link to='/signup'> */}
+              <a href='/signup' style={{textDecoration: 'none', paddingLeft: '5px', color: 'blue', fontWeight: 'bold', cursor: 'pointer'}} onClick={onClickRegister}>Sign Up</a>
+            {/* </Link> */}
           </span>
         </Router>
       </div>
+      </>
+      }
       </>
   );
 }

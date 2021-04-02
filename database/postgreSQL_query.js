@@ -1,7 +1,9 @@
 const pool = require('./database_config.js');
+const request = require('request');
 
 const postImage = (request, response) => {
   const {username, image_url, reported} = request.body;
+
   pool.databaseConfig.query('INSERT INTO photo_gallery(username, image_url,reported) VALUES ($1, $2, $3)', [username, image_url, reported], (err, result) => {
     if(err) throw err;
     console.log('image added');
@@ -37,13 +39,18 @@ const validateUser = (request, response) => {
   pool.databaseConfig.query('SELECT * from existing_users', (err, results) => {
     if(err) throw err;
     const existingUsers = results.rows;
-    console.log(existingUsers);
+    let username = '';
+    //console.log(existingUsers);
     for(let i = 0; i < existingUsers.length; i++) {
       if(email === existingUsers[i].email && password === existingUsers[i].password) {
-        response.status(200).json(existingUsers[i].username);
-      } else {
-        response.status(200).json('anonymous');
+        username = existingUsers[i].username;
       }
+    }
+    console.log(username);
+    if(username !== '') {
+    response.status(200).json(username);
+    } else {
+      response.status(200).json('anonymous');
     }
   });
 }

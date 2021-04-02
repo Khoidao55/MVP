@@ -12,10 +12,10 @@ const UploadImage = ({ user }) => {
       setUploadedImage(result.data);
     })
     .catch(err => console.log('error in useEffect of uploadImage'));
-  }, []);
+  }, [uploadedImage]);
 
   const imageSelected = (event) => {
-    //event.preventDefault();
+    event.preventDefault();
     const reader = new FileReader();
     reader.onload = () => {
       if(reader.readyState === 2) {
@@ -27,7 +27,7 @@ const UploadImage = ({ user }) => {
         axios.post('/globalgallery', postObj)
         .then(result => console.log("posted successfully!"))
         .catch(err => console.log('err'));
-        setUploadedImage(prevState => [reader.result, ...prevState]);
+        setUploadedImage(prevState => [[user, reader.result], ...prevState]);
       }
     }
     reader.readAsDataURL(event.target.files[0]);
