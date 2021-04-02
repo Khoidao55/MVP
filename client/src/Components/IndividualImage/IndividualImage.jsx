@@ -4,7 +4,7 @@ import './IndividualImage.css';
 
 const IndividualImage = ({ username, image, setSelectedImage }) => {
   return (
-    <div>
+    <div className='image-wrap'>
       <motion.img
         className='individual-image'
         whileHover={{ opacity: 0.8 }}
@@ -18,7 +18,8 @@ const IndividualImage = ({ username, image, setSelectedImage }) => {
         src={image}
       />
       <div className='pic-username'>
-        <p><i class="fas fa-camera"></i> @{username}</p>
+        <p>@{username}</p>
+        {/* <i className="fas fa-camera"></i> */}
       </div>
   </div>
   )

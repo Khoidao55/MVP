@@ -12,13 +12,19 @@ import "./SignInPage.css";
 
 import { signInWithGoogle } from "../../FireBase/FireBase.utils";
 
-const SignInPage = ({ setUser }) => {
+const SignInPage = ({ setIsRegistered, setUser }) => {
   //const toggle = false;
   const [isLoggedIn, setIsLoggedIn] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
+  if(isLoggedIn === true) {
+    setIsRegistered(false);
+  }
+
   const onClickRegister = () => {
+    setIsRegistered(false);
     <Redirect to='/signup' />
   }
 

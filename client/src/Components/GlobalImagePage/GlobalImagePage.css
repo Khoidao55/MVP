@@ -3,7 +3,26 @@
   grid-template-columns: repeat(4, 1fr);
   align-items: start;
   padding: 0 40px;
-  /* display: flex;
-  flex-wrap: wrap; */
 }
 
+/* .image-gallery-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+} */
+
+
+
+.individual-image {
+  width: 70%;
+  height: auto;
+  padding: 10px;
+}
+
+.pic-username {
+  display: block;
+  background-color: #ededed;
+  opacity: 0.9;
+  margin-left: 10px;
+  margin-top: -47px;
+}

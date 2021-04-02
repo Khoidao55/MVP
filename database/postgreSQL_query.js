@@ -3,8 +3,7 @@ const request = require('request');
 
 const postImage = (request, response) => {
   const {username, image_url, reported} = request.body;
-
-  pool.databaseConfig.query('INSERT INTO photo_gallery(username, image_url,reported) VALUES ($1, $2, $3)', [username, image_url, reported], (err, result) => {
+  pool.databaseConfig.query('INSERT INTO photo_gallery(username, image_url, reported) VALUES ($1, $2, $3)', [username, image_url, reported], (err, result) => {
     if(err) throw err;
     console.log('image added');
     response.status(200).send(`image added!`);

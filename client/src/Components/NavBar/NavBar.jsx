@@ -3,18 +3,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import { auth } from "../../FireBase/FireBase.utils";
 import './NavBar.css';
 
 const NavBar = ({ currentUser }) => {
 
-  const onClickHome = () => {
+  const onClickHome = (event) => {
     <Redirect to='/' />
   }
 
-  const onClickSignIn = () => {
+  const onClickSignIn = (event) => {
     <Redirect to='/signin' />
   }
 
@@ -22,6 +23,9 @@ const NavBar = ({ currentUser }) => {
     <Router>
       <nav>
         <div className="row">
+          <Link to='/'>
+            <img onClick={onClickHome} src='https://i.pinimg.com/originals/30/ae/8e/30ae8e8ee24b13b2e18743202ddd8d00.jpg' alt="Homepage navigation" className="logo" />
+          </Link>
           <ul className="main-nav">
             <li>
               {/* <Link to="/"> */}

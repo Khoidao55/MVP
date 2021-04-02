@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import useFirestore from '../../hooks/useFireStore.js';
 import ModalPic from '../ModalPic/ModalPic.jsx';
 import { motion } from 'framer-motion';
-import './GlobalImagePage.css';
+import './SpecificUserHomePage.css';
 
-const GlobalImagePage = ({ user }) => {
-  const { docs } = useFirestore('images');
-  console.log(docs);
+const SpecificUserHomePage = ({ imageGallery }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+
   return(
     <div className='image-gallery-container'>
-      {docs && docs.map(doc =>
+      {imageGallery.map(image =>
       (<motion.div
-        key={doc.id}
+        key={imageGallery.indexOf(image)}
         >
         <motion.div>
-          {console.log(doc)}
           <motion.img
             className='individual-image'
             style={{cursor: 'pointer'}}
             onClick={() => {
-              setSelectedImage(doc.url);
+              setSelectedImage(image[1]);
             }}
-            src={doc.url}
+            src={image[1]}
           />
-          {/* <div className='pic-username'>
-            <p><i className="fas fa-camera"></i> @{image[0]}</p>
-          </div> */}
+          <div className='pic-username'>
+            <p><i class="fas fa-camera"></i> @{image[0]}</p>
+          </div>
          </motion.div>
         {/* <IndividualImage
           username={image[0]}
@@ -40,4 +37,4 @@ const GlobalImagePage = ({ user }) => {
   )
 }
 
-export default GlobalImagePage;
+export default SpecificUserHomePage;

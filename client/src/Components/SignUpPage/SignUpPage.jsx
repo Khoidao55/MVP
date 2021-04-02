@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import axios from 'axios';
 import FormInput from "../FormInput/FormInput.jsx";
 
-const SignUpPage = () => {
+const SignUpPage = ({ setIsRegistered }) => {
   const [isRegistered, setRegistered] = useState(false);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,6 +25,7 @@ const SignUpPage = () => {
   const createUser = (event) => {
     if(userName !== '' && email !== '' && password !== '') {
       setRegistered(true);
+      setIsRegistered(true);
       const userIdentity = {
         username: userName,
         email: email,
@@ -43,10 +51,8 @@ const SignUpPage = () => {
 
   return (
     <>
-    {isRegistered
-    ? <div className="sign-in">
-        <h1>Youre all signed up!</h1>
-      </div>
+    {setRegistered === true
+    ? <Redirect to='/signin' />
     : <div className="sign-in">
         <span className="sign-in-text">
           Sign up with your email

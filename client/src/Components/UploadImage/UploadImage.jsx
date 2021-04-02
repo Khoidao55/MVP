@@ -1,65 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import GlobalImagePage from '../GlobalImagePage/GlobalImagePage.jsx';
 import './UploadImage.css';
 
 const UploadImage = ({ user }) => {
   const [uploadedImage, setUploadedImage] = useState([]);
-
-  useEffect(() => {
-    axios.get('/globalgallery')
-    .then(result => {
-      setUploadedImage(result.data);
-    })
-    .catch(err => console.log('error in useEffect of uploadImage'));
-  }, [uploadedImage]);
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  // useEffect(() => {
+  //   axios.get('/globalgallery')
+  //   .then(result => {
+  //     setUploadedImage(result.data);
+  //   })
+  //   .catch(err => console.log('error in useEffect of uploadImage'));
+  // }, []);
 
   const imageSelected = (event) => {
-    let url = URL.createObjectURL(event.target.files[0]);
-
-    const postObj = {
-      username: user,
-      image_url: url,
-      reported: 0
-    }
-    axios.post('/globalgallery', postObj)
-    .then(result => console.log("posted successfully!"))
-    .catch(err => console.log('err'));
-    //setUploadedImage(prevState => [[user, reader.result], ...prevState]);
-
-    setUploadedImage(prevState => [[user, url], ...prevState]);
-    //event.preventDefault();
-    // const reader = new FileReader();
-    // reader.onload = () => {
-    //   if(reader.readyState === 2) {
-    //
-    // }
-    // reader.readAsDataURL(event.target.files[0]);
+    const url = event.target.files[0];
+    setFile(url);
+    setError('');
   };
-
-    if(uploadedImage.length !== 0) {
-      return (
-        <div>
-          <div style={{textAlign: 'center', marginBottom: '20px'}}>
-            <input type='file' accept="image/*" onChange={imageSelected}/>
-          </div>
-          {uploadedImage.length === 0
-          ? <div></div>
-          : <GlobalImagePage imageGallery={uploadedImage}/>}
+    return (
+      <div>
+        <div style={{textAlign: 'center', marginBottom: '20px'}}>
+          <input type='file' accept="image/*" onChange={imageSelected}/>
         </div>
-      )
-    } else {
-      return(
         <div>
-          <div style={{textAlign: 'center', marginBottom: '20px'}}>
-            <input type='file' accept="image/*" onChange={imageSelected}/>
-          </div>
-          {uploadedImage.length === 0
-          ? <div></div>
-          : <GlobalImagePage imageGallery={uploadedImage}/>}
+          {file && <ProgressBar file={file} />}
+          <GlobalImagePage user={user}/>
         </div>
-      )
-    };
+      </div>
+    )
 }
 
 export default UploadImage;
