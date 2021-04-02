@@ -5,21 +5,7 @@ import { motion } from 'framer-motion';
 import './GlobalImagePage.css';
 
 const GlobalImagePage = ({ imageGallery }) => {
-  //const toggle = false;
-  //const [expandPic, setExpandPic] = useState(toggle);
   const [selectedImage, setSelectedImage] = useState(null);
-
-  // const clickPic = (event) => {
-  //   // console.log('clicked');
-  //   // console.log(expandPic);
-  //   // setExpandPic(() => !toggle);
-  //   selectedImage
-  // }
-  // const onClickZoom = () => {
-  //   if (selectedImage !== null) {
-  //     setExpandPic((view) => !view);
-  //   }
-  // };
 
   return(
     <div className='image-gallery-container'>
@@ -29,8 +15,8 @@ const GlobalImagePage = ({ imageGallery }) => {
         layout
         >
         <IndividualImage
-          image={image}
-          //setExpandPic={setExpandPic}
+          username={image[0]}
+          image={image[1]}
           setSelectedImage={setSelectedImage}
         />
       </motion.div>)

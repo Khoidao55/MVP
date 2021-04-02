@@ -6,32 +6,37 @@ import {
   Link
 } from "react-router-dom";
 import { auth } from "../../FireBase/FireBase.utils";
+import './NavBar.css';
 
 const NavBar = ({ currentUser }) => {
   return (
     <Router>
-    <nav>
-      <li>
-        <Link to="/">
-          Home
-        </Link>
-      </li>
-      <li>
-        {currentUser !== 'anonymous'
-        ? (
-          <a href="#signout" onClick={() => auth.signOut()}>
-            <cite className="user-profile">
-              <h2>Logged In</h2>
-            </cite>
-          </a>
-        )
-        : (
-          <Link to="/signin">
-            Sign In
-          </Link>
-        )}
-      </li>
-    </nav>
+      <nav>
+        <div className="row">
+          <ul className="main-nav">
+            <li>
+              <Link to="/">
+              <a href="/">Home</a>
+              </Link>
+            </li>
+            <li>
+              {currentUser !== 'anonymous'
+              ? (
+                <a href="#signout" onClick={() => auth.signOut()}>
+                  <cite className="user-profile">
+                    <h2>Logged In</h2>
+                  </cite>
+                </a>
+              )
+              : (
+                <Link to="/signin">
+                  <a href="/signin">Sign In</a>
+                </Link>
+              )}
+            </li>
+          </ul>
+        </div>
+      </nav>
     </Router>
   )
 }

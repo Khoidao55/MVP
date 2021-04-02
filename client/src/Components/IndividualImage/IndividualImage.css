@@ -3,3 +3,11 @@
   height: auto;
   padding: 10px;
 }
+
+.pic-username {
+  display: block;
+  background-color: #ededed;
+  opacity: 0.9;
+  margin-left: 10px;
+  margin-top: -47px;
+}

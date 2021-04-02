@@ -2,32 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './IndividualImage.css';
 
-const IndividualImage = ({ image, setSelectedImage }) => {
-  //if(expandPic === false) {
-    return (
-      <div>
-        <motion.img
-          className='individual-image'
-          whileHover={{ opacity: 0.8 }}
-          style={{cursor: 'pointer'}}
-          onClick={() => {
-            //setExpandPic;
-            setSelectedImage(image);
-          }}
-          // initial={{ opacity: 0}}
-          // animate={{ opacity: 1}}
-          // transition={{ delay: 1}}
-          src={image}
-        />
-    </div>
-    )
-  // } else {
-  //   return(
-  //   <div>
-  //     <h1>hello world</h1>
-  //   </div>
-  //   )
-  // }
+const IndividualImage = ({ username, image, setSelectedImage }) => {
+  return (
+    <div>
+      <motion.img
+        className='individual-image'
+        whileHover={{ opacity: 0.8 }}
+        style={{cursor: 'pointer'}}
+        onClick={() => {
+          setSelectedImage(image);
+        }}
+        // initial={{ opacity: 0}}
+        // animate={{ opacity: 1}}
+        // transition={{ delay: 1}}
+        src={image}
+      />
+      <div className='pic-username'>
+        <p><i class="fas fa-camera"></i> @{username}</p>
+      </div>
+  </div>
+  )
 }
 
 export default IndividualImage;

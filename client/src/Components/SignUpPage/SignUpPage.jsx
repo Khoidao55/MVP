@@ -3,6 +3,7 @@ import axios from 'axios';
 import FormInput from "../FormInput/FormInput.jsx";
 
 const SignUpPage = () => {
+  const [isRegistered, setRegistered] = useState(false);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,12 +11,13 @@ const SignUpPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setUserName('');
-    setUserName('');
+    setEmail('');
     setPassword('');
   };
 
   const createUser = (event) => {
     if(userName !== '' && email !== '' && password !== '') {
+      setRegistered(true);
       const userIdentity = {
         username: userName,
         email: email,
@@ -41,55 +43,46 @@ const SignUpPage = () => {
 
   return (
     <>
-    <div className="sign-in">
-      <span className="sign-in-text">
-        Sign up with your email
-      </span>
-
-      <form onSubmit={handleSubmit}>
-      <FormInput
-          name="username"
-          type="text"
-          label="username"
-          handleChange={handleChange}
-          value={userName}
-          required
-        />
-        <FormInput
-          name="email"
-          type="email"
-          label="email"
-          handleChange={handleChange}
-          value={email}
-          required
-        />
-        <FormInput
-          name="password"
-          type="password"
-          label="password"
-          value={password}
-          handleChange={handleChange}
-          required
-        />
-        <div style={{ paddingLeft: "25px" }}>
-          {/* <CustomButton
-            className="signin-button custom-button-full"
-            type="submit"
-          >
-            Sign In
-          </CustomButton> */}
-
-          {/* <CustomButton
-            className="signin-button custom-button-full"
-            onClick={signInWithGoogle}
-          >
-            Sign in with Google
-          </CustomButton> */}
-          <button onClick={createUser}>Sign Up</button>
-          {/* <button onClick={signInWithGoogle} >Sign in with Google</button> */}
-        </div>
-      </form>
+    {isRegistered
+    ? <div className="sign-in">
+        <h1>Youre all signed up!</h1>
       </div>
+    : <div className="sign-in">
+        <span className="sign-in-text">
+          Sign up with your email
+        </span>
+
+        <form onSubmit={handleSubmit}>
+        <FormInput
+            name="username"
+            type="text"
+            label="username"
+            handleChange={handleChange}
+            value={userName}
+            required
+          />
+          <FormInput
+            name="email"
+            type="email"
+            label="email"
+            handleChange={handleChange}
+            value={email}
+            required
+          />
+          <FormInput
+            name="password"
+            type="password"
+            label="password"
+            value={password}
+            handleChange={handleChange}
+            required
+          />
+          <div style={{ textAlign: 'center' }}>
+            <button onClick={createUser}>Sign Up</button>
+          </div>
+        </form>
+      </div>
+       }
       </>
   );
 }

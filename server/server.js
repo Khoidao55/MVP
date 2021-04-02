@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const axios = require('axios');
@@ -16,6 +17,13 @@ app.post('/globalgallery', db.postImage);
 app.post('/createUser', db.createNewUser);
 app.get('/globalgallery', db.getImage);
 app.get('/validateUser', db.validateUser);
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.listen(3000, () => {
   console.log('Listening on 3000');

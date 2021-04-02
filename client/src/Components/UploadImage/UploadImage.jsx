@@ -16,7 +16,6 @@ const UploadImage = ({ user }) => {
 
   const imageSelected = (event) => {
     //event.preventDefault();
-
     const reader = new FileReader();
     reader.onload = () => {
       if(reader.readyState === 2) {
@@ -60,5 +59,3 @@ const UploadImage = ({ user }) => {
 }
 
 export default UploadImage;
-
-//uploadedImage.map(pic => <img className="uploaded-image" src={pic} />)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Link
@@ -12,13 +12,21 @@ import "./SignInPage.css";
 
 import { signInWithGoogle } from "../../FireBase/FireBase.utils";
 
-const SignInPage = () => {
+const SignInPage = ({ setUser }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const validateUser = () => {
     axios.get(`/validateUser?email=${email}&password=${password}`)
-    .then(result => console.log(result))
+    .then(result => {
+      if(result.data === 'anonymous') {
+        setIsLoggedIn(false);
+      } else {
+        setUser(result.data.username);
+        setIsLoggedIn(true);
+      }
+    })
   };
 
   const handleSubmit = (event) => {
@@ -40,6 +48,9 @@ const SignInPage = () => {
     <>
     <div className="sign-in">
       <span className="sign-in-text">
+        Welcome!
+      </span>
+      <span className="sign-in-text">
         Sign in with your email and password
       </span>
 
@@ -60,22 +71,8 @@ const SignInPage = () => {
           handleChange={handleChange}
           required
         />
-        <div style={{ paddingLeft: "25px" }}>
-          {/* <CustomButton
-            className="signin-button custom-button-full"
-            type="submit"
-          >
-            Sign In
-          </CustomButton> */}
-
-          {/* <CustomButton
-            className="signin-button custom-button-full"
-            onClick={signInWithGoogle}
-          >
-            Sign in with Google
-          </CustomButton> */}
-          <button onClick={validateUser}>Sign in</button>
-          {/* <button onClick={signInWithGoogle} >Sign in with Google</button> */}
+        <div style={{ textAlign: 'center' }}>
+          <button onClick={validateUser}>Login in</button>
         </div>
       </form>
       </div>
