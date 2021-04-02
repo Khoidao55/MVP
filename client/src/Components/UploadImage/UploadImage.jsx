@@ -15,22 +15,26 @@ const UploadImage = ({ user }) => {
   }, [uploadedImage]);
 
   const imageSelected = (event) => {
-    event.preventDefault();
-    const reader = new FileReader();
-    reader.onload = () => {
-      if(reader.readyState === 2) {
-        const postObj = {
-          username: user,
-          image_url: reader.result,
-          reported: 0
-        }
-        axios.post('/globalgallery', postObj)
-        .then(result => console.log("posted successfully!"))
-        .catch(err => console.log('err'));
-        setUploadedImage(prevState => [[user, reader.result], ...prevState]);
-      }
+    let url = URL.createObjectURL(event.target.files[0]);
+
+    const postObj = {
+      username: user,
+      image_url: url,
+      reported: 0
     }
-    reader.readAsDataURL(event.target.files[0]);
+    axios.post('/globalgallery', postObj)
+    .then(result => console.log("posted successfully!"))
+    .catch(err => console.log('err'));
+    //setUploadedImage(prevState => [[user, reader.result], ...prevState]);
+
+    setUploadedImage(prevState => [[user, url], ...prevState]);
+    //event.preventDefault();
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //   if(reader.readyState === 2) {
+    //
+    // }
+    // reader.readAsDataURL(event.target.files[0]);
   };
 
     if(uploadedImage.length !== 0) {
