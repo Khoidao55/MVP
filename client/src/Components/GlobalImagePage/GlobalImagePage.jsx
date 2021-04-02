@@ -6,17 +6,20 @@ import './GlobalImagePage.css';
 
 const GlobalImagePage = ({ user }) => {
   const { docs } = useFirestore('images');
-  console.log(docs);
   const [selectedImage, setSelectedImage] = useState(null);
+
   return(
     <div className='image-gallery-container'>
       {docs && docs.map(doc =>
       (<motion.div
+        layout
         key={doc.id}
         >
         <motion.div>
-          {console.log(doc)}
           <motion.img
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
             className='individual-image'
             style={{cursor: 'pointer'}}
             onClick={() => {

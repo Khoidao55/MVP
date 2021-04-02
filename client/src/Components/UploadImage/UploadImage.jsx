@@ -27,8 +27,8 @@ const UploadImage = ({ user }) => {
           <input type='file' accept="image/*" onChange={imageSelected}/>
         </div>
         <div>
-          {file && <ProgressBar file={file} />}
-          <GlobalImagePage user={user}/>
+          {file && <ProgressBar file={file} setFile={setFile} />}
+          <GlobalImagePage user={user} />
         </div>
       </div>
     )

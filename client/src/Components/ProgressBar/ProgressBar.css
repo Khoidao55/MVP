@@ -1,0 +1,8 @@
+.progress-upload-bar {
+  margin-left: 35%;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 5px;
+  background: black;
+  margin-top: 20px;
+}
