@@ -36,7 +36,7 @@ const NavBar = ({ currentUser }) => {
               {currentUser !== 'anonymous'
               ? (
                 <Link to={`/${currentUser}`}>
-                  <a>{currentUser}</a>
+                  <a href={`/${currentUser}`}>{currentUser}</a>
                 </Link>
               )
               : (

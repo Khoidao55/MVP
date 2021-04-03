@@ -15,7 +15,6 @@ import './App.css';
 const App = () => {
   const [user, setUser] = useState('anonymous');
   const [isRegistered, setIsRegistered] = useState(false);
-  console.log(user);
   return(
     <div>
       <NavBar currentUser={user} />
@@ -30,8 +29,6 @@ const App = () => {
           <Route exact path="/signup">
             <SignUpPage setIsRegistered={setIsRegistered} />
           </Route>
-        </Switch>
-        <Switch>
           <Route exact path={`/${user}`} >
             <SpecificUserUploadPage />
           </Route>

@@ -27,9 +27,9 @@ const GlobalImagePage = ({ user }) => {
             }}
             src={doc.url}
           />
-          {/* <div className='pic-username'>
-            <p><i className="fas fa-camera"></i> @{image[0]}</p>
-          </div> */}
+          <div className='pic-username'>
+            <p><i className="fas fa-camera"></i> @{doc.userName}</p>
+          </div>
          </motion.div>
         {/* <IndividualImage
           username={image[0]}
