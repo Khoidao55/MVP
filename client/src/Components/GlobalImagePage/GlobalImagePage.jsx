@@ -31,11 +31,6 @@ const GlobalImagePage = ({ user }) => {
             <p><i className="fas fa-camera"></i> @{doc.userName}</p>
           </div>
          </motion.div>
-        {/* <IndividualImage
-          username={image[0]}
-          image={image[1]}
-          setSelectedImage={setSelectedImage}
-        /> */}
       </motion.div>)
       )}
       {selectedImage && <ModalPic selectedImage={selectedImage} setSelectedImage={setSelectedImage} />}

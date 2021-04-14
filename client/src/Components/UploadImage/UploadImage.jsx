@@ -13,17 +13,17 @@ const UploadImage = ({ user }) => {
     setFile(url);
     setError('');
   };
-    return (
-      <div>
-        <div style={{textAlign: 'center', marginBottom: '20px'}}>
-          <input type='file' accept="image/*" onChange={imageSelected}/>
-        </div>
-        <div>
-          {file && <ProgressBar user={user} file={file} setFile={setFile} />}
-          <GlobalImagePage user={user} />
-        </div>
+  return (
+    <div>
+      <div style={{textAlign: 'center', marginBottom: '20px'}}>
+        <input type='file' accept="image/*" onChange={imageSelected}/>
       </div>
-    )
+      <div>
+        {file && <ProgressBar user={user} file={file} setFile={setFile} />}
+        <GlobalImagePage user={user} />
+      </div>
+    </div>
+  )
 }
 
 export default UploadImage;
