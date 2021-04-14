@@ -2,7 +2,7 @@ This is my Minimum Viable Product(MVP) version of my own creation.
 
 It is a photography gallery where signed in users or anonymous users can post their photography to the page and everyone can view it.
 
-Tech Stack:
+Tech Stack
   
   Front-End:
     -ReactJS
