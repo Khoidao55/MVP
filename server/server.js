@@ -13,10 +13,6 @@ app.use(compression());
 
 app.use(express.static('public'));
 
-app.post('/globalgallery', db.postImage);
-app.post('/createUser', db.createNewUser);
-app.get('/globalgallery', db.getImage);
-app.get('/validateUser', db.validateUser);
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {

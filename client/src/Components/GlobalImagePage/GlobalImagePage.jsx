@@ -4,6 +4,8 @@ import ModalPic from '../ModalPic/ModalPic.jsx';
 import { motion } from 'framer-motion';
 import './GlobalImagePage.css';
 
+//use database to store specific user's photo by username in this FILE.
+
 const GlobalImagePage = ({ user }) => {
   const { docs } = useFirestore('images');
   const [selectedImage, setSelectedImage] = useState(null);
