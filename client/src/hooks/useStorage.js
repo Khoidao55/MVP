@@ -15,12 +15,16 @@ const useStorage = (user, file) => {
       setProgress(percentage);
     }, (err) => {
       setError(err);
-    }, async() => {
+    }, async () => {
       const userName = user;
       const url = await storageRef.getDownloadURL();
       const createdAt = timestamp();
       collectionRef.add({ userName, url, createdAt });
       setURL(url);
+
+      console.log(createdAt); // <====== add this to database?
+      console.log(username); // <====== this will be the user's username that I will log into the database.
+      console.log(url); // <======= add this as the url to the database for each user.
     })
   }, [file]);
 

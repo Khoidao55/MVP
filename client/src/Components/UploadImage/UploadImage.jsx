@@ -13,6 +13,7 @@ const UploadImage = ({ user }) => {
     setFile(url);
     setError('');
   };
+
   return (
     <div>
       <div style={{textAlign: 'center', marginBottom: '20px'}}>

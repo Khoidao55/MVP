@@ -29,9 +29,9 @@ const App = () => {
           <Route exact path="/signup">
             <SignUpPage setIsRegistered={setIsRegistered} />
           </Route>
-          <Route exact path={`/${user}`} >
+          {/* <Route exact path={`/${user}`} >
             <SpecificUserUploadPage />
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
     </div>

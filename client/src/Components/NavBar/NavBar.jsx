@@ -7,6 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { auth } from "../../FireBase/FireBase.utils";
+import SearchBar from '../SearchBar/SearchBar.jsx';
 import './NavBar.css';
 
 const NavBar = ({ currentUser }) => {
@@ -20,6 +21,8 @@ const NavBar = ({ currentUser }) => {
   }
 
   return (
+    <div>
+      <SearchBar />
     <Router>
       <nav>
         <div className="row">
@@ -49,6 +52,7 @@ const NavBar = ({ currentUser }) => {
         </div>
       </nav>
     </Router>
+    </div>
   )
 }
 

@@ -10,6 +10,11 @@ const GlobalImagePage = ({ user }) => {
   const { docs } = useFirestore('images');
   const [selectedImage, setSelectedImage] = useState(null);
 
+  useEffect(() => {
+    console.log(docs);
+    console.log(user);
+  }, [docs]);
+
   return(
     <div className='image-gallery-container'>
       {docs && docs.map(doc =>
@@ -19,7 +24,7 @@ const GlobalImagePage = ({ user }) => {
         >
         <motion.div>
           <motion.img
-            initial={{ opacity: 0}}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
             className='individual-image'
