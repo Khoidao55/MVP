@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 
-const SearchBar = () => {
-  const [searchedUser, setSearchedUser] = useState('');
+const SearchBar = ({ searchedUser }) => {
+  //const [searchedUser, setSearchedUser] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.search.value);
-    setSearchedUser(e.target.search.value);
+    searchedUser(e.target.search.value);
   }
+
   return (
     //<div className="search-container">
       //{console.log(searchedUser)}

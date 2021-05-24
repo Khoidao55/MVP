@@ -15,27 +15,53 @@ import './App.css';
 const App = () => {
   const [user, setUser] = useState('anonymous');
   const [isRegistered, setIsRegistered] = useState(false);
-  return(
-    <div>
-      <NavBar currentUser={user} />
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <UploadImage user={user}/>
-          </Route>
-          <Route exact path="/signin">
-            <SignInPage setIsRegistered={setIsRegistered} setUser={setUser} />
-          </Route>
-          <Route exact path="/signup">
-            <SignUpPage setIsRegistered={setIsRegistered} />
-          </Route>
-          {/* <Route exact path={`/${user}`} >
-            <SpecificUserUploadPage />
-          </Route> */}
-        </Switch>
-      </Router>
-    </div>
-  )
+  const [searchedUser, setSearchedUser] = useState('');
+
+  if(searchedUser === '') {
+    return(
+      <div>
+        <NavBar currentUser={user} searchedUser={setSearchedUser} />
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <UploadImage user={user}/>
+            </Route>
+            <Route exact path="/signin">
+              <SignInPage setIsRegistered={setIsRegistered} setUser={setUser} />
+            </Route>
+            <Route exact path="/signup">
+              <SignUpPage setIsRegistered={setIsRegistered} />
+            </Route>
+            {/* <Route exact path={`/${user}`} >
+              <SpecificUserUploadPage />
+            </Route> */}
+          </Switch>
+        </Router>
+      </div>
+    )
+  } else {
+    return(
+      <div>
+        <NavBar currentUser={user} searchedUser={setSearchedUser} />
+        <Router>
+          <Switch>
+            <Route exact path={`/${searchedUser}`}>
+              {/* This will be the home page for the searched User*/}
+            </Route>
+            <Route exact path="/signin">
+              <SignInPage setIsRegistered={setIsRegistered} setUser={setUser} />
+            </Route>
+            <Route exact path="/signup">
+              <SignUpPage setIsRegistered={setIsRegistered} />
+            </Route>
+            {/* <Route exact path={`/${user}`} >
+              <SpecificUserUploadPage />
+            </Route> */}
+          </Switch>
+        </Router>
+      </div>
+    )
+  }
 }
 
 export default App;

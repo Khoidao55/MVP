@@ -10,7 +10,7 @@ import { auth } from "../../FireBase/FireBase.utils";
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import './NavBar.css';
 
-const NavBar = ({ currentUser }) => {
+const NavBar = ({ currentUser, searchedUser }) => {
 
   const onClickHome = (event) => {
     <Redirect to='/' />
@@ -22,7 +22,7 @@ const NavBar = ({ currentUser }) => {
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar searchedUser={searchedUser} />
     <Router>
       <nav>
         <div className="row">
