@@ -18,7 +18,7 @@ app.get('/validateUser', (req, res) => {
 });
 
 app.post('/createUser', (req, res) => {
-  console.log(req.body);
+  db.createUser(req, res);
 })
 
 app.get('/*', function(req, res) {
