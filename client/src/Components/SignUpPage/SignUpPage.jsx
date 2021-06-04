@@ -15,12 +15,12 @@ const SignUpPage = ({ setIsRegistered }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setUserName('');
-    setEmail('');
-    setPassword('');
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   setUserName('');
+  //   setEmail('');
+  //   setPassword('');
+  // };
 
   const createUser = (event) => {
     if(userName !== '' && email !== '' && password !== '') {
@@ -58,7 +58,7 @@ const SignUpPage = ({ setIsRegistered }) => {
           Sign up with your email
         </span>
 
-        <form onSubmit={handleSubmit}>
+        <form>
         <FormInput
             name="username"
             type="text"

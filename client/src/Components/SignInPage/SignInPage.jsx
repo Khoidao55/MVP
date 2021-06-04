@@ -29,7 +29,14 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
   }
 
   const validateUser = () => {
-    axios.get(`/validateUser?email=${email}&password=${password}`)
+    console.log(email);
+    console.log(password);
+    axios.get('/validateUser', {
+      params: {
+        email: email,
+        password: password
+      }
+    })
     .then(result => {
       if(result.data === 'anonymous') {
         setIsLoggedIn(false);

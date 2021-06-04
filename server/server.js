@@ -13,6 +13,14 @@ app.use(compression());
 
 app.use(express.static('public'));
 
+app.get('/validateUser', (req, res) => {
+  console.log(req.params);
+});
+
+app.post('/createUser', (req, res) => {
+  console.log(req.body);
+})
+
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {
@@ -20,6 +28,7 @@ app.get('/*', function(req, res) {
     }
   })
 })
+
 
 app.listen(3000, () => {
   console.log('Listening on 3000');
