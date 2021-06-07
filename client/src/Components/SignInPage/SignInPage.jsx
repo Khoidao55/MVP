@@ -31,19 +31,23 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
   const validateUser = () => {
     console.log(email);
     console.log(password);
-    axios.get('/validateUser', {
-      params: {
-        email: email,
-        password: password
-      }
-    })
+    const credentials = {
+      email: email,
+      password: password
+    }
+    axios.post('/validateUser', credentials)
     .then(result => {
-      if(result.data === 'anonymous') {
-        setIsLoggedIn(false);
-      } else {
-        setUser(result.data);
-        setIsLoggedIn(true);
-      }
+    //   if(result.data === 'anonymous') {
+    //     setIsLoggedIn(false);
+    //   } else {
+    //     setUser(result.data);
+    //     setIsLoggedIn(true);
+    //   }
+    // })
+    console.log(result.data);
+    })
+    .catch(error => {
+      console.log(error)
     })
   };
 

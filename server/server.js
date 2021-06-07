@@ -13,13 +13,14 @@ app.use(compression());
 
 app.use(express.static('public'));
 
-app.get('/validateUser', (req, res) => {
-  console.log(req.params);
-});
-
 app.post('/createUser', (req, res) => {
   db.createUser(req, res);
 })
+
+app.post('/validateUser', (req, res) => {
+  console.log('parapms', req.body);
+  db.signInChecker(req, res);
+});
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
