@@ -37,17 +37,12 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
     }
     axios.post('/validateUser', credentials)
     .then(result => {
-    //   if(result.data === 'anonymous') {
-    //     setIsLoggedIn(false);
-    //   } else {
-    //     setUser(result.data);
-    //     setIsLoggedIn(true);
-    //   }
-    // })
-    console.log(result.data);
+      console.log('entered')
+      setIsLoggedIn(true);
+      setUser(result.data);
     })
     .catch(error => {
-      console.log(error)
+      setIsLoggedIn(false);
     })
   };
 

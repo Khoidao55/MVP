@@ -27,9 +27,9 @@ const signInChecker = async (req, res) => {
     const userChecker = await pool.databaseConfig.query(`SELECT password FROM users WHERE email = '${email}'`);
     if(userChecker) {
       const isUser = await bcrypt.compare(password, userChecker.rows[0].password);
-
       if(isUser) {
-        res.send(200);
+        const user = await pool.databaseConfig.query(`SELECT username from users WHERE email = '${email}'`)
+        res.status(200).send(user.rows[0].username);
       } else {
         res.status(401).send('user does not exist');
       }
