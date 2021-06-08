@@ -16,6 +16,16 @@ const App = () => {
   const [user, setUser] = useState('anonymous');
   const [isRegistered, setIsRegistered] = useState(false);
   const [searchedUser, setSearchedUser] = useState('');
+  console.log(searchedUser);
+
+  useEffect(() => {
+    console.log('triggered');
+    return(
+    <Route exact path={`/${searchedUser}`} >
+      <SpecificUserUploadPage searchedUser={searchedUser}/>
+    </Route>
+    )
+  }, [searchedUser]);
 
   if(searchedUser === '') {
     return(
@@ -32,7 +42,7 @@ const App = () => {
             <Route exact path="/signup">
               <SignUpPage setIsRegistered={setIsRegistered} />
             </Route>
-            {/* <Route exact path={`/${user}`} >
+            {/* <Route exact path={`/${searchedUser}`} >
               <SpecificUserUploadPage />
             </Route> */}
           </Switch>
@@ -42,20 +52,21 @@ const App = () => {
   } else {
     return(
       <div>
+        {console.log('in here', searchedUser)}
         <NavBar currentUser={user} searchedUser={setSearchedUser} />
         <Router>
           <Switch>
-            <Route exact path={`/${searchedUser}`}>
+            {/* <Route exact path={`/${searchedUser}`}> */}
               {/* This will be the home page for the searched User*/}
-            </Route>
+            {/* </Route> */}
             <Route exact path="/signin">
               <SignInPage setIsRegistered={setIsRegistered} setUser={setUser} />
             </Route>
             <Route exact path="/signup">
               <SignUpPage setIsRegistered={setIsRegistered} />
             </Route>
-            {/* <Route exact path={`/${user}`} >
-              <SpecificUserUploadPage />
+            {/* <Route exact path={`/${searchedUser}`} >
+              <SpecificUserUploadPage searchedUser={searchedUser}/>
             </Route> */}
           </Switch>
         </Router>

@@ -3,7 +3,8 @@ import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import SpecificUserHomePage from '../SpecificUserHomePage/SpecificUserHomePage.jsx';
 import '../UploadImage/UploadImage.css';
 
-const SpecificUserUploadPage = ({ user }) => {
+const SpecificUserUploadPage = ({ searchedUser }) => {
+  console.log('uploaddddd');
   const [uploadedImage, setUploadedImage] = useState([]);
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
@@ -19,8 +20,8 @@ const SpecificUserUploadPage = ({ user }) => {
           <input type='file' accept="image/*" onChange={imageSelected}/>
         </div>
         <div>
-          {file && <ProgressBar user={user} file={file} setFile={setFile} />}
-          <SpecificUserHomePage user={user} />
+          {file && <ProgressBar user={searchedUser} file={file} setFile={setFile} />}
+          <SpecificUserHomePage searchedUser={searchedUser} />
         </div>
       </div>
     )

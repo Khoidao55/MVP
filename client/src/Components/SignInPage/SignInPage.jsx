@@ -13,7 +13,6 @@ import "./SignInPage.css";
 import { signInWithGoogle } from "../../FireBase/FireBase.utils";
 
 const SignInPage = ({ setIsRegistered, setUser }) => {
-  //const toggle = false;
   const [isLoggedIn, setIsLoggedIn] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,8 +28,6 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
   }
 
   const validateUser = () => {
-    console.log(email);
-    console.log(password);
     const credentials = {
       email: email,
       password: password
@@ -40,6 +37,8 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
       console.log('entered')
       setIsLoggedIn(true);
       setUser(result.data);
+      localStorage.setItem('user', result.data)
+      console.log(localStorage);
     })
     .catch(error => {
       setIsLoggedIn(false);

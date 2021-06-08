@@ -4,13 +4,14 @@ import ModalPic from '../ModalPic/ModalPic.jsx';
 import { motion } from 'framer-motion';
 import './SpecificUserHomePage.css';
 
-const SpecificUserHomePage = ({ user }) => {
+const SpecificUserHomePage = ({ searchUser }) => {
+  console.log('in here?');
   const { docs } = useFirestore('images');
   const [selectedImage, setSelectedImage] = useState(null);
   let arrayOfUserPic = [];
 
   docs.forEach(doc => {
-    if(doc.userName === user) {
+    if(doc.userName === searchUser) {
       arrayOfUserPic.push(doc);
     }
   })
