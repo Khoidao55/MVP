@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link
@@ -31,7 +30,7 @@ const App = () => {
     return(
       <div>
         <NavBar currentUser={user} searchedUser={setSearchedUser} />
-        <Router>
+
           <Switch>
             <Route exact path="/">
               <UploadImage user={user}/>
@@ -46,7 +45,7 @@ const App = () => {
               <SpecificUserUploadPage />
             </Route> */}
           </Switch>
-        </Router>
+
       </div>
     )
   } else {
