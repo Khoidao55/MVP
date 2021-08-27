@@ -60,6 +60,13 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
     }
   };
 
+  // const testing = async () => {
+  //   let validate = await axios.get('/testing');
+  //   console.log('data', validate.data);
+  // }
+
+  testing();
+
   return (
     <>
     {isLoggedIn
