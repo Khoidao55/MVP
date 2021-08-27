@@ -22,6 +22,10 @@ app.post('/validateUser', (req, res) => {
   db.signInChecker(req, res);
 });
 
+app.get('/testing', (req, res) => {
+  res.send('yeet');
+})
+
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {

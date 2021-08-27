@@ -3,3 +3,4 @@ node_modules
 package-lock.json
 database_config.js
 FireBase.utils.js
+coverage
