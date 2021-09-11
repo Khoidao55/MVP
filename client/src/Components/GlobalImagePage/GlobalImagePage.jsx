@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useFirestore from '../../hooks/useFireStore.js';
+import axios from 'axios';
 import ModalPic from '../ModalPic/ModalPic.jsx';
 import { motion } from 'framer-motion';
 import './GlobalImagePage.css';
@@ -11,9 +12,19 @@ const GlobalImagePage = ({ user }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    console.log(docs);
     console.log(user);
   }, [docs]);
+
+  const setRedis = () => {
+    if(docs.length !== 0) {
+      axios.post('/redisData', {
+        data: docs
+      }).then(res => console.log('sent to redis'))
+      .catch(err => console.log('did not send to redis'));
+    }
+  }
+
+  setRedis();
 
   return(
     <div className='image-gallery-container'>
