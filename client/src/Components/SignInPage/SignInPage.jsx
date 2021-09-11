@@ -34,7 +34,6 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
     }
     axios.post('/validateUser', credentials)
     .then(result => {
-      console.log('entered')
       setIsLoggedIn(true);
       setUser(result.data);
       localStorage.setItem('user', result.data)
@@ -65,7 +64,7 @@ const SignInPage = ({ setIsRegistered, setUser }) => {
   //   console.log('data', validate.data);
   // }
 
-  testing();
+  //testing();
 
   return (
     <>
