@@ -8,27 +8,30 @@ import './GlobalImagePage.css';
 //use database to store specific user's photo by username in this FILE.
 
 const GlobalImagePage = ({ user }) => {
-  const { docs } = useFirestore('images');
+  //const { docs } = useFirestore('images');
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [images, setImages] = useState([]);
   useEffect(() => {
     console.log(user);
-  }, [docs]);
+    axios.get('/getPhotosFromRedis')
+    .then(data => setImages(data.data))
+    .catch(err => console.log('err'));
+  }, []);
 
-  const setRedis = () => {
-    if(docs.length !== 0) {
-      axios.post('/redisData', {
-        data: docs
-      }).then(res => console.log('sent to redis'))
-      .catch(err => console.log('did not send to redis'));
-    }
-  }
+  // const setRedis = () => {
+  //   if(docs.length !== 0) {
+  //     axios.post('/redisData', {
+  //       data: docs
+  //     }).then(res => console.log('sent to redis'))
+  //     .catch(err => console.log('did not send to redis'));
+  //   }
+  // }
 
-  setRedis();
+  // setRedis();
 
   return(
     <div className='image-gallery-container'>
-      {docs && docs.map(doc =>
+      {images && images.map(doc =>
       (<motion.div
         layout
         key={doc.id}
